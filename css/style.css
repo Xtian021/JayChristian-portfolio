@@ -1005,7 +1005,7 @@ section:nth-of-type(even) {
 
 .design-card {
   position: relative;
-  height: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1082,47 +1082,128 @@ section:nth-of-type(even) {
   isolation: isolate;
 }
 
-.design-preview::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
-  background-size: 35px 35px;
-  pointer-events: none;
-  z-index: 4;
+/* =========================================================
+   DESIGN WORK — EQUAL CARD HEIGHT
+   ========================================================= */
+
+#design .row {
+  align-items: stretch;
 }
 
-.preview-label {
-  position: absolute;
-  left: 18px;
-  bottom: 17px;
-  padding: 6px 9px;
-  border: 1px solid rgba(34, 211, 238, 0.28);
-  border-radius: 4px;
-  background: rgba(5, 7, 11, 0.78);
-  color: var(--cyan-light);
-  font-family: var(--mono);
-  font-size: 0.55rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  backdrop-filter: blur(8px);
-  z-index: 6;
+#design .row > div {
+  display: flex;
 }
 
-.preview-number {
-  position: absolute;
-  right: 18px;
-  bottom: 10px;
-  color: rgba(255, 255, 255, 0.05);
-  font-family: var(--display);
-  font-size: 5rem;
-  font-weight: 700;
-  line-height: 1;
-  z-index: 3;
+#design .design-card {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
 }
 
+#design .visual-design-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#design .visual-design-card .project-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#design .visual-design-card .design-tags {
+  margin-top: auto;
+}
+
+
+/* =========================================================
+   DESIGN WORK — IMAGE
+   ========================================================= */
+
+#design .visual-design-card .design-image-wrapper {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+#design .visual-design-card .design-preview {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+
+  #design .visual-design-card .design-image-wrapper {
+    height: 190px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  #design .row > div {
+    display: block;
+  }
+
+  #design .design-card {
+    height: auto;
+  }
+
+  #design .visual-design-card {
+    height: auto;
+  }
+
+  #design .visual-design-card .project-content {
+    display: block;
+  }
+
+  #design .visual-design-card .design-tags {
+    margin-top: 0.8rem;
+  }
+
+  #design .visual-design-card .design-image-wrapper {
+    height: auto;
+  }
+
+  #design .visual-design-card .design-preview {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  #design .visual-design-card .design-image-wrapper {
+    height: auto;
+  }
+
+  #design .visual-design-card .design-preview {
+    height: auto;
+  }
+
+}
 
 /* =========================================================
    UI / UX PREVIEW
@@ -2330,6 +2411,32 @@ footer::before {
 
 
 /* =========================================================
+   PROJECT CARDS — EQUAL HEIGHT
+   ========================================================= */
+
+#project .row {
+  align-items: stretch;
+}
+
+#project .project-card {
+  height: 100%;
+  min-height: 385px;
+  display: flex;
+  flex-direction: column;
+}
+
+#project .project-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#project .project-content .design-link {
+  margin-top: auto;
+}
+
+
+/* =========================================================
    RESPONSIVE — TABLET
    ========================================================= */
 
@@ -2354,6 +2461,29 @@ footer::before {
 
   .design-preview {
     height: 245px;
+  }
+
+  #project .project-card {
+    min-height: 0;
+    height: auto;
+  }
+
+  #project .project-content {
+    height: auto;
+  }
+
+  /* Design Work */
+  #design .design-card {
+    height: auto;
+    min-height: 0;
+  }
+
+  #design .visual-design-card img.design-preview {
+    height: 170px;
+  }
+
+  #design .row > div:last-child .visual-design-card img.design-preview {
+    height: 220px;
   }
 
   .tech-html {
@@ -2480,6 +2610,17 @@ footer::before {
 
   .project-card {
     padding: 35px 26px;
+    min-height: 0;
+    height: auto;
+  }
+
+  #project .project-card {
+    min-height: 0;
+    height: auto;
+  }
+
+  #project .project-content {
+    height: auto;
   }
 
   .project-card::after {
@@ -2493,6 +2634,33 @@ footer::before {
 
   .design-preview {
     height: 260px;
+  }
+
+  /* Design Work */
+  #design .design-card {
+    height: auto;
+    min-height: 0;
+  }
+
+  #design .visual-design-card img.design-preview {
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* New Arrivals */
+  #design .row > div:last-child .visual-design-card img.design-preview {
+    height: auto;
+    max-height: 520px;
+    object-fit: contain;
+    object-position: center;
+    background: #05070b;
+  }
+
+  #design .visual-design-card .project-content {
+    padding-top: 1rem;
   }
 
   .design-content {
@@ -2545,6 +2713,28 @@ footer::before {
 
   .design-preview {
     height: 230px;
+  }
+
+  /* Design Work */
+  #design .design-card {
+    height: auto;
+    min-height: 0;
+  }
+
+  #design .visual-design-card img.design-preview {
+    height: auto;
+    max-height: none;
+  }
+
+  #design .row > div:last-child .visual-design-card img.design-preview {
+    height: auto;
+    max-height: 580px;
+    object-fit: contain;
+    background: #05070b;
+  }
+
+  #design .visual-design-card .project-content {
+    padding-top: 1rem;
   }
 
   .design-content h3 {
@@ -2631,7 +2821,7 @@ footer::before {
 
 .design-card {
   position: relative;
-  height: 100%;
+  height: auto;
   padding: 2rem;
 
   overflow: hidden;
@@ -3067,139 +3257,288 @@ footer::before {
     0 0 14px rgba(139, 92, 246, 0.32);
 }
 
+/* =======================================================
+   DESIGN IMAGE — CLEAN EXPANDED VIEW
+======================================================= */
 
-/* =========================================================
-   EXTRA COLOR POLISH
-========================================================= */
-
-.design-card .project-label,
-.project-card .project-label {
+#design .visual-design-card {
   position: relative;
-  z-index: 2;
-}
-
-.design-card .design-tags,
-.project-card .design-tags {
-  position: relative;
-  z-index: 2;
-}
-
-.design-card .design-link,
-.project-card .design-link {
-  position: relative;
-  z-index: 2;
 }
 
 
-/* =========================================================
+/* =======================================================
+   NORMAL IMAGE
+======================================================= */
+
+#design .visual-design-card .design-image-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: #05070b;
+}
+
+
+/* =======================================================
+   EXPANDED IMAGE FRAME
+======================================================= */
+
+#design .visual-design-card
+.design-image-wrapper.is-expanded {
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 100%;
+
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 48px 28px 28px;
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(34, 211, 238, 0.07),
+      transparent 48%
+    ),
+    rgba(5, 7, 11, 0.985);
+
+  border: 1px solid rgba(34, 211, 238, 0.28);
+  border-radius: var(--radius);
+
+  cursor: default;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025),
+    0 20px 55px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =======================================================
+   ACTUAL DESIGN IMAGE
+======================================================= */
+
+#design .visual-design-card
+.design-image-wrapper.is-expanded
+.design-preview {
+
+  width: auto;
+  height: auto;
+
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  border: 0;
+
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.45);
+
+  transform: none !important;
+}
+
+
+/* =======================================================
+   HIDE ZOOM ICON WHEN OPEN
+======================================================= */
+
+#design .visual-design-card
+.design-image-wrapper.is-expanded
+.image-zoom-icon {
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* =======================================================
+   CLOSE BUTTON
+======================================================= */
+
+#design .visual-design-card
+.design-close-btn {
+
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+
+  width: 36px;
+  height: 36px;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+
+  background:
+    rgba(8, 13, 22, 0.92);
+
+  color: #e2e8f0;
+
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  z-index: 120;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.35);
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+/* =======================================================
+   SHOW CLOSE BUTTON
+======================================================= */
+
+#design .visual-design-card
+.design-image-wrapper.is-expanded
+.design-close-btn {
+
+  display: flex;
+}
+
+
+/* =======================================================
+   CLOSE BUTTON HOVER
+======================================================= */
+
+#design .visual-design-card
+.design-close-btn:hover {
+
+  color: #ffffff;
+
+  background:
+    rgba(34, 211, 238, 0.14);
+
+  border-color:
+    rgba(34, 211, 238, 0.45);
+}
+
+
+/* =======================================================
+   EXPANDED FRAME
+======================================================= */
+
+#design .visual-design-card
+.design-image-wrapper.is-expanded::before {
+
+  content: "DESIGN PREVIEW";
+
+  position: absolute;
+
+  top: 17px;
+  left: 20px;
+
+  color: rgba(165, 243, 252, 0.72);
+
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  font-weight: 600;
+
+  letter-spacing: 0.14em;
+
+  pointer-events: none;
+}
+
+
+/* =======================================================
+   DESKTOP
+======================================================= */
+
+@media (min-width: 769px) {
+
+  #design .visual-design-card
+  .design-image-wrapper.is-expanded {
+
+    min-height: 100%;
+  }
+
+}
+
+
+/* =======================================================
    MOBILE
-========================================================= */
+======================================================= */
 
 @media (max-width: 768px) {
 
-  .design-card {
-    padding: 1.7rem;
+  #design .visual-design-card
+  .design-image-wrapper.is-expanded {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 100%;
+
+    padding:
+      48px 16px 18px;
+
+    border-radius:
+      var(--radius);
+
   }
 
-  .project-content h3 {
-    font-size: 1.25rem;
+  #design .visual-design-card
+  .design-image-wrapper.is-expanded
+  .design-preview {
+
+    max-width: 100%;
+    max-height: 100%;
+
+    object-fit: contain;
   }
 
-  .project-content p {
-    font-size: 0.84rem;
-    line-height: 1.75;
-  }
+  #design .visual-design-card
+  .design-close-btn {
 
-  .design-tags {
-    gap: 0.4rem;
-  }
+    top: 12px;
+    right: 12px;
 
-  .design-tags span {
-    font-size: 0.55rem;
-  }
-
-  .contact-links > a {
-    font-size: 0.68rem;
+    width: 34px;
+    height: 34px;
   }
 
 }
 
 
-/* =========================================================
+/* =======================================================
    SMALL MOBILE
-========================================================= */
+======================================================= */
 
 @media (max-width: 480px) {
 
-  .design-card {
-    padding: 1.45rem;
-    border-radius: var(--radius-md);
+  #design .visual-design-card
+  .design-image-wrapper.is-expanded {
+
+    padding:
+      46px 12px 14px;
   }
 
-  .project-content h3 {
-    font-size: 1.15rem;
-  }
-
-  .project-content p {
-    font-size: 0.81rem;
-  }
-
-  .project-label {
-    font-size: 0.52rem;
-  }
-
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .avatar-frame::before,
-  .status-dot {
-    animation: none;
-  }
-
-  .design-card,
-  .design-link,
-  .design-tags span,
-  .contact-links > a,
-  .timeline-item h3 {
-    transition: none;
-  }
-
-}
-/* =========================================================
-   PROJECT CARDS — EQUAL HEIGHT
-========================================================= */
-
-#project .row {
-    align-items: stretch;
-}
-
-#project .project-card {
-    height: 100%;
-    min-height: 385px;
-    display: flex;
-    flex-direction: column;
-}
-
-#project .project-content {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-#project .project-content .design-link {
-    margin-top: auto;
-}
-
-/* Mobile */
-@media (max-width: 991.98px) {
-    #project .project-card {
-        min-height: 0;
-        height: auto;
-    }
 }
